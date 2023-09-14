@@ -1,15 +1,18 @@
 import React from "react";
 import "./App.css";
-import Card from "./components/Card.jsx";
-import Cards from "./components/Cards.jsx";
-import SearchBar from "./components/SearchBar.jsx";
+import Cards from "./components/Cards/Cards.jsx";
+import SearchBar from "./components/SearchBar/SearchBar.jsx";
 import characters, { Rick } from "./data.js";
 
 function App() {
     return (
         <div className="App">
-            <p>hola</p>
-            <SearchBar onSearch={(characterID) => window.alert(characterID)} />
+            <div className="nav">
+                <SearchBar
+                    onSearch={(characterID) => window.alert(characterID)}
+                />{" "}
+            </div>
+
             <Cards characters={characters} />
         </div>
     );
