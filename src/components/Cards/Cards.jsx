@@ -3,6 +3,7 @@ import Card from "../Card/Card";
 import styles from "./Cards.module.css";
 
 export default function Cards(props) {
+    console.log(props.characters);
     return (
         <div className={styles.container}>
             {props.characters.map((character) => {

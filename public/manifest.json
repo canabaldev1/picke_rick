@@ -1,6 +1,6 @@
 {
-    "short_name": "React App",
-    "name": "Create React App Sample",
+    "short_name": "Pickle Rick",
+    "name": "The Pickle Rick App",
     "icons": [
         {
             "src": "favicon.png",
