@@ -1,25 +1,15 @@
 .inputContainer {
     padding: 0px;
     border: 1px white solid;
-    /* background-image: radial-gradient(
-        circle,
-        #425b77,
-        #87adc2,
-        #5686a8,
-        #14316a,
-        #96cee8,
-        #2e79b4
-    ); */
     background-image: url(./background.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-
     width: max-content;
     border-radius: 5000px;
-    position: relative;
+    /* position: relative;
     left: 50vw;
-    transform: translate(-50%, 0);
+    transform: translate(-50%, 0); */
 }
 
 .input {

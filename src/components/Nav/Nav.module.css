@@ -1,0 +1,7 @@
+.container {
+    background-color: aqua;
+    width: 100%;
+    display: grid;
+    padding: 10px;
+    grid-template-columns: 1fr;
+}
