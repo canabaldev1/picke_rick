@@ -1,9 +1,10 @@
-import React from "react";
 import styles from "./SearchBar.module.css";
-import { useState } from "react";
+import React, { useState, useRef } from "react";
 
 export default function SearchBar(props) {
   const [id, setId] = useState("");
+
+  const searchInput = useRef(null);
 
   const handleChange = (event) => {
     setId(event.target.value);
@@ -11,11 +12,20 @@ export default function SearchBar(props) {
 
   return (
     <div className={styles.inputContainer}>
-      <input className={styles.input} type="search" onChange={handleChange} />
+      <input
+        ref={searchInput}
+        className={styles.input}
+        type="search"
+        onChange={handleChange}
+        value={id}
+      />
       <button
         className={styles.button}
         onClick={() => {
           props.onSearch(id);
+          setId("");
+          console.log(searchInput);
+          searchInput.current.focus();
         }}
       >
         Add

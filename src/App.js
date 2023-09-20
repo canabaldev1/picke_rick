@@ -4,6 +4,10 @@ import Cards from "./components/Cards/Cards.jsx";
 import Nav from "./components/Nav/Nav.jsx";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Routes, Route, Navigate } from "react-router-dom";
+import About from "./components/About/About";
+import Detail from "./components/Detail/Detail";
+import Error from "./components/Error404/Error";
 
 function App() {
   const [characters, setCharacters] = useState([]);
@@ -48,7 +52,17 @@ function App() {
   return (
     <div className="App">
       <Nav onSearch={onSearch} randomSearch={randomSearch} />
-      <Cards characters={characters} onClose={onClose} />
+
+      <Routes>
+        <Route path="/" element={<Navigate to="/home" replace />} />
+        <Route
+          path="/home"
+          element={<Cards characters={characters} onClose={onClose} />}
+        />
+        <Route path="/about" element={<About />} />
+        <Route path="/detail/:id" element={<Detail />} />
+        <Route path="*" element={<Error />} />
+      </Routes>
     </div>
   );
 }

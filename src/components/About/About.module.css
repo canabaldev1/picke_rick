@@ -1,0 +1,6 @@
+.container {
+  color: darksalmon;
+  background-color: maroon;
+  box-sizing: border-box;
+  border: blue 5px dotted;
+}

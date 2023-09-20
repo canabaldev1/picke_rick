@@ -5,6 +5,7 @@ import speciesImg from "./species.png";
 import genderImg from "./gender.png";
 import originImg from "./origin.png";
 import close from "./close.png";
+import { Link } from "react-router-dom";
 
 export default function Card(props) {
   return (
@@ -41,7 +42,9 @@ export default function Card(props) {
         </div>
       </div>
       <div className={styles.divFooter}>
-        <h2>{props.name}</h2>
+        <Link className={styles.h2Name} to={`/detail/${props.id}`}>
+          <h2 className={styles.h2Name}>{props.name}</h2>
+        </Link>
       </div>
     </div>
   );
