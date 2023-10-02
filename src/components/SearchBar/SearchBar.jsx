@@ -16,6 +16,13 @@ export default function SearchBar(props) {
         ref={searchInput}
         className={styles.input}
         type="search"
+        onKeyUp={(event) => {
+          if (event.key === "Enter") {
+            props.onSearch(id);
+            setId("");
+            searchInput.current.focus();
+          }
+        }}
         onChange={handleChange}
         value={id}
       />
@@ -24,7 +31,6 @@ export default function SearchBar(props) {
         onClick={() => {
           props.onSearch(id);
           setId("");
-          console.log(searchInput);
           searchInput.current.focus();
         }}
       >

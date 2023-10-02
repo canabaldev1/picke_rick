@@ -4,10 +4,19 @@ import Cards from "./components/Cards/Cards.jsx";
 import Nav from "./components/Nav/Nav.jsx";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Routes, Route, Navigate } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  useLocation,
+  Navigate,
+  useNavigate,
+} from "react-router-dom";
 import About from "./components/About/About";
 import Detail from "./components/Detail/Detail";
 import Error from "./components/Error404/Error";
+import Form from "./components/Forms/Forms";
+import Welcome from "./components/Welcome/Welcome";
+import Favorites from "./components/Favorites/Favorites";
 
 function App() {
   const [characters, setCharacters] = useState([]);
@@ -33,8 +42,12 @@ function App() {
         window.alert("There is no character with this ID!");
       }
     } catch (error) {
-      window.alert("There is no character with this ID!");
+      console.log("Error", error);
     }
+  }
+
+  function clear() {
+    setCharacters([]);
   }
 
   function randomSearch() {
@@ -49,19 +62,65 @@ function App() {
     setCharacters(filtered);
   }
 
+  const location = useLocation();
+
+  const [access, setAccess] = useState(false);
+
+  const [logedUser, setLogedUser] = useState("");
+
+  const MAIL_EX = "carlos@ejemplo.com";
+  const PASSWORD_EX = "123456";
+  const navigate = useNavigate();
+
+  function login(user) {
+    if (user.mail === MAIL_EX && user.password === PASSWORD_EX) {
+      setAccess(true);
+      navigate("/home");
+    } else {
+      window.alert("usuario o contraseña incorrecta");
+    }
+  }
+
+  useEffect(() => {
+    !access && navigate("/");
+  }, [access]);
+
   return (
     <div className="App">
-      <Nav onSearch={onSearch} randomSearch={randomSearch} />
+      {location.pathname !== "/" && logedUser ? (
+        <Welcome
+          logedUser={logedUser}
+          setAccess={setAccess}
+          setLogedUser={setLogedUser}
+        />
+      ) : (
+        ""
+      )}
+      {location.pathname !== "/" ? (
+        <Nav onSearch={onSearch} randomSearch={randomSearch} clear={clear} />
+      ) : (
+        ""
+      )}
 
       <Routes>
-        <Route path="/" element={<Navigate to="/home" replace />} />
+        <Route
+          path="/"
+          element={
+            access ? (
+              <Navigate to="/home" replace />
+            ) : (
+              <Form login={login} setLogedUser={setLogedUser} />
+            )
+          }
+        />
         <Route
           path="/home"
           element={<Cards characters={characters} onClose={onClose} />}
         />
         <Route path="/about" element={<About />} />
         <Route path="/detail/:id" element={<Detail />} />
-        <Route path="*" element={<Error />} />
+        <Route path="/favorites" element={<Favorites />}></Route>
+        <Route path="/*" element={<Error />} />
       </Routes>
     </div>
   );

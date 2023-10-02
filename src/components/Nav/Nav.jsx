@@ -7,9 +7,11 @@ const Nav = (props) => {
   return (
     <div className={styles.container}>
       <Random randomSearch={props.randomSearch} />
-      <SearchBar onSearch={props.onSearch} />
+      <SearchBar onSearch={props.onSearch} clear={props.clear} />
+      <button onClick={props.clear}>Clear</button>
       <Link to="/about">About</Link>
       <Link to="/home">Home</Link>
+      <Link to="/favorites">Favorites</Link>
     </div>
   );
 };

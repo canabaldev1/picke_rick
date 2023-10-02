@@ -45,7 +45,13 @@ function Detail() {
           ? character.origin.name
           : "Loading"}
       </h3>
-      <div>{character.image ? <img src={character.image} /> : "Loading"}</div>
+      <div>
+        {character.image ? (
+          <img src={character.image} alt={character.name} />
+        ) : (
+          "Loading"
+        )}
+      </div>
     </div>
   );
 }

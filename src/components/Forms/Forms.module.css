@@ -1,0 +1,14 @@
+.container {
+  margin: 30px;
+  color: white;
+}
+
+.container label {
+  margin: 10px;
+}
+.container input {
+  margin: 10px;
+}
+.container span {
+  margin: 10px;
+}
