@@ -30,8 +30,9 @@ h2 {
 
   /* border: red solid 5px; */
 
-  box-shadow: 1px 1px 5px rgba(192, 247, 0.1), -1px 1px 5px rgba(192, 247, 0.1),
-    1px -1px 5px rgba(192, 247, 0.1), -1px -1px 5px rgba(192, 247, 0.1);
+  box-shadow: 0px 0px 5px rgba(192, 247, 0.1);
+  /* box-shadow: 1px 1px 5px rgba(192, 247, 0.1), -1px 1px 5px rgba(192, 247, 0.1),
+    1px -1px 5px rgba(192, 247, 0.1), -1px -1px 5px rgba(192, 247, 0.1); */
   transition: all linear 0.4s;
 }
 
@@ -56,8 +57,8 @@ h2 {
   width: 100%;
   font-size: 30px;
   font-weight: bold;
-  color: #048394; /* Color del relleno */
-  text-shadow: 0px 0px 3px rgb(192, 247, 0.3); /* Sombra de texto (desplazamiento horizontal, desplazamiento vertical, radio de desenfoque, color) */
+  color: #048394;
+  text-shadow: 0px 0px 3px rgb(192, 247, 0.3);
   text-align: center;
   text-decoration: none;
 }
@@ -90,7 +91,7 @@ h2 {
   left: 3px;
   height: 50px;
   width: 50px;
-  background-color: blue;
+  background-color: transparent;
   border: 0px;
   cursor: pointer;
 }
@@ -100,9 +101,18 @@ h2 {
   left: 3px;
   height: 50px;
   width: 50px;
-  background-color: pink;
+  background-color: transparent;
   border: 0px;
   cursor: pointer;
+}
+
+.favNoImg {
+  filter: drop-shadow(0 0 3px #d1f73f);
+  transition: all 0.2s linear;
+}
+.favYesImg {
+  filter: drop-shadow(0 0 1px #d1f73f);
+  transition: all 0.2s linear;
 }
 
 .info {
@@ -204,9 +214,10 @@ h2 {
 
 .divContainer:hover {
   transition: all linear 0.4s;
-  box-shadow: 5px 5px 20px rgba(192, 247, 0.3),
+  box-shadow: 0px 0px 20px rgba(192, 247, 0.3);
+  /* box-shadow: 5px 5px 20px rgba(192, 247, 0.3),
     -5px 5px 20px rgba(192, 247, 0.3), 5px -5px 20px rgba(192, 243, 0.3),
-    -5px -5px 20px rgba(192, 243, 0.3);
+    -5px -5px 20px rgba(192, 243, 0.3); */
 }
 
 .divContainer:hover .info {

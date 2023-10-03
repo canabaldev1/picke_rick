@@ -5,6 +5,9 @@ import speciesImg from "./species.png";
 import genderImg from "./gender.png";
 import originImg from "./origin.png";
 import close from "./close.png";
+import favoriteYes from "./favoriteYes.png";
+import favoriteNo from "./favoriteNo.png";
+
 import { Link } from "react-router-dom";
 import { addFav, removeFav } from "../../redux/actions";
 import { useState, useEffect } from "react";
@@ -46,11 +49,11 @@ export default function Card(props) {
 
         {isFav ? (
           <button className={styles.favYesButton} onClick={handleFavorites}>
-            FY
+            <img className={styles.favYesImg} src={favoriteYes} alt="FY" />
           </button>
         ) : (
           <button className={styles.favNoButton} onClick={handleFavorites}>
-            FN
+            <img className={styles.favNoImg} src={favoriteNo} alt="FN" />
           </button>
         )}
 
