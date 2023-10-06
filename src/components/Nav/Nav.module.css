@@ -1,6 +1,5 @@
 .container {
   /* background-color: aqua; */
-  width: 100%;
   display: grid;
   padding: 10px;
   grid-template-columns: 1fr 1fr 1fr;
@@ -14,7 +13,6 @@
   background-position: center;
   border-radius: 10px;
   width: max-content;
-  min-width: 500px;
 }
 
 .link {
@@ -26,6 +24,7 @@
 
 @media (max-width: 520px) {
   .container {
+    width: 100%;
     grid-template-columns: auto;
     grid-template-rows: auto;
   }
