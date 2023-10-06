@@ -8,9 +8,11 @@ function Welcome({ logedUser, setAccess, setLogedUser }) {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       <h3>Welcome {logedUser}</h3>
-      <button onClick={hadleLogout}>Log out</button>
+      <button className={styles.logoutButton} onClick={hadleLogout}>
+        Log out
+      </button>
     </div>
   );
 }

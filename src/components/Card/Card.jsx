@@ -16,11 +16,12 @@ import { useLocation } from "react-router-dom";
 
 export default function Card(props) {
   const location = useLocation();
-  console.log(location);
 
   const dispatch = useDispatch();
 
   const [isFav, setIsFav] = useState(false);
+
+  const allCharacters = useSelector((state) => state.allCharacters);
 
   const handleFavorites = () => {
     if (isFav) {
@@ -32,15 +33,13 @@ export default function Card(props) {
     }
   };
 
-  const myFavorites = useSelector((state) => state.myFavorites);
-
   useEffect(() => {
-    myFavorites.forEach((fav) => {
+    allCharacters.forEach((fav) => {
       if (fav.id === props.id) {
         setIsFav(true);
       }
     });
-  }, [myFavorites, props.id]);
+  }, [allCharacters, props.id]);
 
   return (
     <div className={styles.divContainer}>
@@ -90,7 +89,9 @@ export default function Card(props) {
       </div>
       <div className={styles.divFooter}>
         <Link className={styles.h2Name} to={`/detail/${props.id}`}>
-          <h2 className={styles.h2Name}>{props.name}</h2>
+          <h2 className={styles.h2Name}>
+            {props.id}. {props.name}
+          </h2>
         </Link>
       </div>
     </div>

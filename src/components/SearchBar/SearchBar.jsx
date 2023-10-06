@@ -11,7 +11,7 @@ export default function SearchBar(props) {
   };
 
   return (
-    <div className={styles.inputContainer}>
+    <div>
       <input
         ref={searchInput}
         className={styles.input}

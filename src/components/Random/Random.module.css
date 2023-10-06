@@ -1,0 +1,10 @@
+.randomButton {
+  font-size: 14px;
+  background-color: rgba(192, 247, 1);
+  padding: 15px;
+  border: 1px black solid;
+  width: 160px;
+  height: 64px;
+  border-radius: 50px;
+  cursor: pointer;
+}

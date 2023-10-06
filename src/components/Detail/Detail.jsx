@@ -5,9 +5,7 @@ import { useState, useEffect } from "react";
 
 function Detail() {
   const { id } = useParams();
-  console.log(id);
   const [character, setCharacter] = useState({});
-  console.log(setCharacter);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,18 +32,34 @@ function Detail() {
     };
   }, [id]);
 
+  const episodeNumber = character.episode
+    ? character.episode[0].split("/").pop()
+    : "";
+
   return (
     <div className={styles.container}>
-      <h1>{character.name ? character.name : "Loading"}</h1>
-      <h3>{character.status ? character.status : "Loading"}</h3>
-      <h3>{character.species ? character.species : "Loading"}</h3>
-      <h3>{character.gender ? character.gender : "Loading"}</h3>
-      <h3>
-        {character.origin && character.origin.name
-          ? character.origin.name
-          : "Loading"}
-      </h3>
-      <div>
+      <div className={styles.infoContainer}>
+        <h1>Name: {character.name ? character.name : "Loading"}</h1>
+        <h3>Status: {character.status ? character.status : "Loading"}</h3>
+        <h3>Specie: {character.species ? character.species : "Loading"}</h3>
+        <h3>Gender: {character.gender ? character.gender : "Loading"}</h3>
+        <h3>
+          Origin:{" "}
+          {character.origin && character.origin.name
+            ? character.origin.name
+            : "Loading"}
+        </h3>
+        {character.type && (
+          <h3>Type: {character.type ? character.type : "Loading"}</h3>
+        )}
+        <h3>
+          Debut episode:{" "}
+          {character.episode
+            ? character.episode[0].split("/").pop()
+            : "Loading"}
+        </h3>
+      </div>
+      <div className={styles.imageContainer}>
         {character.image ? (
           <img src={character.image} alt={character.name} />
         ) : (

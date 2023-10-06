@@ -1,14 +1,17 @@
 import React from "react";
+import styles from "./Random.module.css";
 
 function Random(props) {
+  const handleClick = () => {
+    props.randomSearch();
+  };
+
   return (
-    <button
-      onClick={() => {
-        props.randomSearch();
-      }}
-    >
-      Random
-    </button>
+    <div>
+      <button className={styles.randomButton} onClick={handleClick}>
+        Random
+      </button>
+    </div>
   );
 }
 

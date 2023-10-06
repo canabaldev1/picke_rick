@@ -1,4 +1,7 @@
-.container {
-  background-color: red;
-  color: yellow;
+.container h1 {
+  color: red;
+}
+
+.container h3 {
+  color: white;
 }
