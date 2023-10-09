@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Card from "../Card/Card";
 import styles from "./Cards.module.css";
 
-export default function Cards(props) {
+export default function Cards({ characters, onClose, setCharacters, access }) {
+  useEffect(() => {
+    return () => {
+      setCharacters([]);
+    };
+  }, [access, setCharacters]);
   return (
     <div className={styles.container}>
-      {props.characters.map((character) => {
+      {characters.map((character) => {
         return (
           <Card
             key={character.id}
@@ -16,7 +21,7 @@ export default function Cards(props) {
             gender={character.gender}
             origin={character.origin}
             image={character.image}
-            onClose={props.onClose}
+            onClose={onClose}
           />
         );
       })}

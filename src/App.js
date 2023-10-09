@@ -64,7 +64,9 @@ function App() {
 
   const location = useLocation();
 
-  const [access, setAccess] = useState(false);
+  const [access, setAccess] = useState(
+    JSON.parse(localStorage.getItem("access"))
+  );
 
   const [logedUser, setLogedUser] = useState("");
 
@@ -82,12 +84,16 @@ function App() {
   }
 
   useEffect(() => {
-    !access && navigate("/");
-  }, [access]);
+    if (access && location.pathname === "/") {
+      navigate("/home");
+    }
+    if (!access) navigate("/");
+    localStorage.setItem("access", access);
+  }, [access, location.pathname, navigate]);
 
   return (
     <div className="App">
-      {location.pathname !== "/" && logedUser ? (
+      {location.pathname !== "/" && access ? (
         <Welcome
           logedUser={logedUser}
           setAccess={setAccess}
@@ -115,7 +121,14 @@ function App() {
         />
         <Route
           path="/home"
-          element={<Cards characters={characters} onClose={onClose} />}
+          element={
+            <Cards
+              characters={characters}
+              onClose={onClose}
+              setCharacters={setCharacters}
+              access={access}
+            />
+          }
         />
         <Route path="/about" element={<About />} />
         <Route path="/detail/:id" element={<Detail />} />
