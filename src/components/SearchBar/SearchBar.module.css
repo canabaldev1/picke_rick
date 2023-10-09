@@ -1,6 +1,6 @@
 .inputContainer {
   padding: 0px;
-  border: 1px white solid;
+  border: none;
   background-image: url(./background.jpg);
   background-repeat: no-repeat;
   background-size: cover;
