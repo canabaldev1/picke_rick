@@ -23,8 +23,9 @@
   border-radius: 5px;
 }
 
-@media (max-width: 520px) {
+@media (max-width: 500px) {
   .container {
+    min-width: 100dvw;
     width: 100%;
     grid-template-columns: auto;
     grid-template-rows: auto;

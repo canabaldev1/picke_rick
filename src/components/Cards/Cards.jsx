@@ -3,11 +3,11 @@ import Card from "../Card/Card";
 import styles from "./Cards.module.css";
 
 export default function Cards({ characters, onClose, setCharacters, access }) {
-  useEffect(() => {
-    return () => {
-      setCharacters([]);
-    };
-  }, [access, setCharacters]);
+  // useEffect(() => {
+  //   setCharacters([]);
+  //   return;
+  // }, [access]);
+
   return (
     <div className={styles.container}>
       {characters.map((character) => {
