@@ -83,7 +83,7 @@ export default function Card(props) {
 
           <img className={styles.imgOrigin} src={originImg} alt="origin" />
           <div className={styles.divOrigin}>
-            <h2 className={styles.h2Origin}>{props.origin.name}</h2>
+            <h2 className={styles.h2Origin}>{props.origin}</h2>
           </div>
         </div>
       </div>

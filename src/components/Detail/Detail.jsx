@@ -11,7 +11,7 @@ function Detail() {
     const fetchData = async () => {
       try {
         const response = await axios(
-          `https://rickandmortyapi.com/api/character/${id}`
+          `http://localhost:3001/rickandmorty/character/${id}`
         );
         const { data } = response;
 
@@ -43,12 +43,7 @@ function Detail() {
         <h3>Status: {character.status ? character.status : "Loading"}</h3>
         <h3>Specie: {character.species ? character.species : "Loading"}</h3>
         <h3>Gender: {character.gender ? character.gender : "Loading"}</h3>
-        <h3>
-          Origin:{" "}
-          {character.origin && character.origin.name
-            ? character.origin.name
-            : "Loading"}
-        </h3>
+        <h3>Origin: {character.origin ? character.origin : "Loading"}</h3>
         {character.type && (
           <h3>Type: {character.type ? character.type : "Loading"}</h3>
         )}

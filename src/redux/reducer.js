@@ -14,19 +14,30 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_FAV:
+      const currentAllCharacters = [...state.allCharacters, action.payload];
+      const mapChar = new Map();
+      const allChar = [];
+
+      for (const item of currentAllCharacters) {
+        if (!mapChar.has(item["id"])) {
+          mapChar.set(item["id"], true);
+          allChar.push(item);
+        }
+      }
+
       return {
         ...state,
-        allCharacters: [...state.allCharacters, action.payload],
+        allCharacters: allChar,
       };
 
     case REMOVE_FAV:
       return {
         ...state,
         myFavorites: state.myFavorites.filter(
-          (character) => character.id !== Number(action.payload)
+          (character) => character.id !== action.payload
         ),
         allCharacters: state.allCharacters.filter(
-          (character) => character.id !== Number(action.payload)
+          (character) => character.id !== action.payload
         ),
       };
 

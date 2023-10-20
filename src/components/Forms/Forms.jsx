@@ -33,6 +33,7 @@ function Form({ login, setLogedUser }) {
     login(user);
     const logedUser = user.mail.slice(0, user.mail.indexOf("@"));
     setLogedUser(logedUser);
+    localStorage.setItem("user", logedUser);
   }
 
   return (
