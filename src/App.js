@@ -35,15 +35,12 @@ function App() {
         `http://localhost:3001/rickandmorty/character/${id}`
       );
       const { data } = response;
-
       if (data.name) {
         setCharacters((oldChars) => [...oldChars, data]);
       } else {
         window.alert("There is no character with this ID!");
       }
-    } catch (error) {
-      console.log("Error", error);
-    }
+    } catch (error) {}
   }
 
   function clear() {
@@ -70,17 +67,27 @@ function App() {
 
   const [logedUser, setLogedUser] = useState("");
 
-  const MAIL_EX = "carlos@ejemplo.com";
-  const PASSWORD_EX = "123456";
+  // const MAIL_EX = "carlos@ejemplo.com";
+  // const PASSWORD_EX = "123456";
   const navigate = useNavigate();
 
-  function login(user) {
-    if (user.mail === MAIL_EX && user.password === PASSWORD_EX) {
-      setAccess(true);
-      navigate("/home");
-    } else {
-      window.alert("usuario o contraseña incorrecta");
-    }
+  // function login(user) {
+  //   if (user.mail === MAIL_EX && user.password === PASSWORD_EX) {
+  //     setAccess(true);
+  //     navigate("/home");
+  //   } else {
+  //     window.alert("usuario o contraseña incorrecta");
+  //   }
+  // }
+
+  function login(userData) {
+    const { mail, password } = userData;
+    const URL = "http://localhost:3001/rickandmorty/login/";
+    axios(URL + `?email=${mail}&password=${password}`).then(({ data }) => {
+      const { access } = data;
+      setAccess(access);
+      access && navigate("/home");
+    });
   }
 
   useEffect(() => {

@@ -27,9 +27,11 @@ export default function Card(props) {
     if (isFav) {
       setIsFav(false);
       dispatch(removeFav(props.id));
+      // props.handleFilter && props.handleFilter();
     } else {
       setIsFav(true);
       dispatch(addFav(props));
+      // props.handleFilter && props.handleFilter();
     }
   };
 
@@ -44,7 +46,7 @@ export default function Card(props) {
   return (
     <div className={styles.divContainer}>
       <div className={styles.divHeader}>
-        <img src={props.image} alt={props.name} />
+        <img loading="lazy" src={props.image} alt={props.name} />
 
         {isFav ? (
           <button className={styles.favYesButton} onClick={handleFavorites}>
@@ -87,13 +89,13 @@ export default function Card(props) {
           </div>
         </div>
       </div>
-      <div className={styles.divFooter}>
-        <Link className={styles.h2Name} to={`/detail/${props.id}`}>
+      <Link className={styles.divFooter} to={`/detail/${props.id}`}>
+        <div>
           <h2 className={styles.h2Name}>
             {props.id}. {props.name}
           </h2>
-        </Link>
-      </div>
+        </div>{" "}
+      </Link>
     </div>
   );
 }

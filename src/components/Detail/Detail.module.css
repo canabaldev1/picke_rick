@@ -15,10 +15,20 @@
 }
 
 .infoContainer {
-  margin: 30px;
+  margin: 10px 30px 10px 30px;
   min-width: 300px;
 }
 
 .imageContainer img {
   border-radius: 20px;
+}
+
+.links {
+  color: white;
+  font-weight: 200;
+}
+
+.specs {
+  margin: 0px;
+  font-weight: 400;
 }

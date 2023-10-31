@@ -13,37 +13,54 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    // case ADD_FAV:
+    //   const currentAllCharacters = [...state.allCharacters, action.payload];
+    //   const mapChar = new Map();
+    //   const allChar = [];
+
+    //   for (const item of currentAllCharacters) {
+    //     if (!mapChar.has(item["id"])) {
+    //       mapChar.set(item["id"], true);
+    //       allChar.push(item);
+    //     }
+    //   }
+
+    //   return {
+    //     ...state,
+    //     allCharacters: allChar,
+    //   };
+
     case ADD_FAV:
-      const currentAllCharacters = [...state.allCharacters, action.payload];
-      const mapChar = new Map();
-      const allChar = [];
-
-      for (const item of currentAllCharacters) {
-        if (!mapChar.has(item["id"])) {
-          mapChar.set(item["id"], true);
-          allChar.push(item);
-        }
-      }
-
       return {
         ...state,
-        allCharacters: allChar,
+        allCharacters: action.payload,
+        myFavorites: action.payload,
       };
 
+    // case REMOVE_FAV:
+    //   return {
+    //     ...state,
+    //     myFavorites: state.myFavorites.filter(
+    //       (character) => character.id !== action.payload
+    //     ),
+    //     allCharacters: state.allCharacters.filter(
+    //       (character) => character.id !== action.payload
+    //     ),
+    //   };
+
     case REMOVE_FAV:
+      console.log("se ejecuta REMOVE FAV");
       return {
         ...state,
-        myFavorites: state.myFavorites.filter(
-          (character) => character.id !== action.payload
-        ),
-        allCharacters: state.allCharacters.filter(
-          (character) => character.id !== action.payload
-        ),
+        allCharacters: action.payload,
+        myFavorites: action.payload,
       };
 
     case FILTER:
       const { gender, order } = action.payload;
       let filteredFavs = [...state.allCharacters];
+
+      console.log("se ejecuta FILTER");
 
       filteredFavs =
         gender === "---"
@@ -60,6 +77,7 @@ const reducer = (state = initialState, action) => {
               if (order === "D") {
                 return b.id - a.id;
               }
+              return 0;
             });
 
       return { ...state, myFavorites: filteredFavs };

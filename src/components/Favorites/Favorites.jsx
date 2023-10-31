@@ -10,6 +10,7 @@ import { useEffect, useRef } from "react";
 
 function Favorites(props) {
   const myFavorites = useSelector((state) => state.myFavorites);
+  const allCharacters = useSelector((state) => state.allCharacters);
   const dispatch = useDispatch();
   const filterGender = useRef(null);
   const filterOrder = useRef(null);
@@ -21,11 +22,17 @@ function Favorites(props) {
   };
 
   useEffect(() => {
+    dispatch(
+      filterCards(filterGender.current.value, filterOrder.current.value)
+    );
+  }, [allCharacters, dispatch]);
+
+  useEffect(() => {
     dispatch(initialFavorites());
     return () => {
       dispatch(cleanFavorites());
     };
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className={styles.container}>
@@ -68,7 +75,7 @@ function Favorites(props) {
         {myFavorites.map((character) => {
           return (
             <Card
-              key={character.id}
+              key={character.id.toString()}
               id={character.id}
               name={character.name}
               status={character.status}
@@ -77,6 +84,7 @@ function Favorites(props) {
               origin={character.origin}
               image={character.image}
               onClose={() => {}}
+              handleFilter={handleFilter}
             />
           );
         })}
