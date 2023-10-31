@@ -15,8 +15,6 @@ h2 {
 }
 
 .divContainer {
-  /* border: red solid 1px; */
-  /* position: relative; */
   /* width: clamp(200px, 60vw, 300px);   USAR ESTE */
   width: 300px;
   /* height: 400px; */
@@ -35,8 +33,6 @@ h2 {
   /* border: red solid 5px; */
 
   box-shadow: 0px 0px 5px #048394;
-  /* box-shadow: 1px 1px 5px rgba(192, 247, 0.1), -1px 1px 5px rgba(192, 247, 0.1),
-    1px -1px 5px rgba(192, 247, 0.1), -1px -1px 5px rgba(192, 247, 0.1); */
   transition: all linear 0.4s;
 }
 
@@ -68,19 +64,29 @@ h2 {
   text-decoration: none;
 }
 
+.characterImageNotLoaded {
+  height: 100%;
+  width: 100%;
+  transform: translate(-50%, 100%);
+  z-index: 0;
+}
+
+.characterImageLoaded {
+  height: 100%;
+  width: 100%;
+  transform: translate(-50%, 0%);
+  z-index: 0;
+  transition: all cubic-bezier(0.1, 0.95, 0.45, 1) 1s;
+}
+
 .divHeader img {
   position: absolute;
   top: 0;
   left: 50%;
-  transform: translate(-50%, 0%);
-  z-index: 0;
   object-fit: cover;
-  height: 100%;
-  width: 100%;
-  /* border-radius: 20px 20px 0 0; */
 }
 
-.divHeader .closeButton {
+.closeButton {
   position: absolute;
   top: 3px;
   right: 3px;
@@ -91,7 +97,14 @@ h2 {
   cursor: pointer;
 }
 
-.divHeader .favYesButton {
+.closeButton img {
+  height: 100%;
+  width: 100%;
+  transform: translate(-50%, 0%);
+  z-index: 1;
+}
+
+.favYesButton {
   position: absolute;
   top: 3px;
   left: 3px;
@@ -101,7 +114,7 @@ h2 {
   border: 0px;
   cursor: pointer;
 }
-.divHeader .favNoButton {
+.favNoButton {
   position: absolute;
   top: 3px;
   left: 3px;
@@ -115,10 +128,18 @@ h2 {
 .favNoImg {
   filter: drop-shadow(0 0 3px #d1f73f);
   transition: all 0.2s linear;
+  height: 100%;
+  width: 100%;
+  transform: translate(-50%, 0%);
+  z-index: 1;
 }
 .favYesImg {
   filter: drop-shadow(0 0 1px #d1f73f);
   transition: all 0.2s linear;
+  height: 100%;
+  width: 100%;
+  transform: translate(-50%, 0%);
+  z-index: 1;
 }
 
 .info {
@@ -137,29 +158,29 @@ h2 {
     "h2Species imgSpecies"
     "h2Gender imgGender"
     "h2Origin imgOrigin";
-  /* "imgStatus h2Status"
-        "imgSpecies h2Species"
-        "imgGender h2Gender"
-        "imgOrigin h2Origin"; */
   transition: all 0.6s ease-in;
 }
 
 .info .imgStatus {
   grid-area: imgStatus;
+  height: 100%;
+  width: 100%;
 }
 .info .divStatus {
   grid-area: h2Status;
-  /* align-self: center; */
 }
 .info .imgSpecies {
   grid-area: imgSpecies;
+  height: 100%;
+  width: 100%;
 }
 .info .divSpecies {
   grid-area: h2Species;
-  /* align-self: center; */
 }
 .info .imgGender {
   grid-area: imgGender;
+  height: 100%;
+  width: 100%;
 }
 .info .divGender {
   grid-area: h2Gender;
@@ -168,8 +189,9 @@ h2 {
 .info .imgOrigin {
   grid-area: imgOrigin;
   object-fit: cover;
-  /* box-shadow: 0 0 10px #d1f73f; */
   filter: drop-shadow(0 0 1px #d1f73f);
+  height: 100%;
+  width: 100%;
 }
 .info .divOrigin {
   grid-area: h2Origin;
@@ -177,14 +199,14 @@ h2 {
 }
 
 .info img {
-  /* height: 90%;
-    width: 90%; */
   padding: 5px;
   object-fit: fill;
   overflow: hidden;
   border-top: white solid 1px;
   border-bottom: white solid 1px;
   border-right: white solid 1px;
+  transform: translate(-50%, 0%);
+  z-index: 1;
 }
 
 .info::before {
@@ -221,9 +243,6 @@ h2 {
 .divContainer:hover {
   transition: all linear 0.4s;
   box-shadow: 0px 0px 20px rgba(192, 247, 0.3);
-  /* box-shadow: 5px 5px 20px rgba(192, 247, 0.3),
-    -5px 5px 20px rgba(192, 247, 0.3), 5px -5px 20px rgba(192, 243, 0.3),
-    -5px -5px 20px rgba(192, 243, 0.3); */
 }
 
 .divContainer:hover .info {

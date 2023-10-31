@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import styles from "./Card.module.css";
 import statusImg from "./status.png";
 import speciesImg from "./species.png";
@@ -23,6 +23,8 @@ export default function Card(props) {
 
   const allCharacters = useSelector((state) => state.allCharacters);
 
+  const characterImage = useRef(null);
+
   const handleFavorites = () => {
     if (isFav) {
       setIsFav(false);
@@ -33,6 +35,12 @@ export default function Card(props) {
       dispatch(addFav(props));
       // props.handleFilter && props.handleFilter();
     }
+  };
+
+  const handleLoad = () => {
+    console.log(characterImage);
+    console.log(characterImage.current.className);
+    characterImage.current.className = styles.characterImageLoaded;
   };
 
   useEffect(() => {
@@ -46,7 +54,14 @@ export default function Card(props) {
   return (
     <div className={styles.divContainer}>
       <div className={styles.divHeader}>
-        <img loading="lazy" src={props.image} alt={props.name} />
+        <img
+          loading="lazy"
+          src={props.image}
+          alt={props.name}
+          onLoad={handleLoad}
+          ref={characterImage}
+          className={styles.characterImageNotLoaded}
+        />
 
         {isFav ? (
           <button className={styles.favYesButton} onClick={handleFavorites}>
