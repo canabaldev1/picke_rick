@@ -83,7 +83,7 @@ const reducer = (state = initialState, action) => {
       return { ...state, myFavorites: filteredFavs };
 
     case INITIAL_FAVORITES:
-      return { ...state, myFavorites: state.allCharacters };
+      return { ...state, allCharacters: action.payload };
 
     case CLEAN_FAVORITES:
       return { ...state, myFavorites: [] };

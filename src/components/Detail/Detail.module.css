@@ -2,10 +2,12 @@
   margin-top: 30px;
   border: 1px white solid;
   padding: 15px;
-  border-radius: 20px;
+  border-radius: 35px;
   background-color: rgba(0, 255, 255, 0.05);
   color: greenyellow;
   display: flex;
+  max-width: 1000 px;
+  align-items: center;
 }
 
 @media (max-width: 700px) {
@@ -16,11 +18,27 @@
 
 .infoContainer {
   margin: 10px 30px 10px 30px;
-  min-width: 300px;
+  max-width: 600px;
+  min-width: 200px;
+}
+
+.imageContainer {
+  width: 400px;
+  aspect-ratio: 1;
+}
+
+@media (max-width: 700px) {
+  .imageContainer {
+    width: 90%;
+  }
 }
 
 .imageContainer img {
   border-radius: 20px;
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  box-shadow: 0px 0px 10px rgba(192, 247, 0.3);
 }
 
 .links {
