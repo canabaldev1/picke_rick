@@ -1,0 +1,47 @@
+.container {
+  margin-top: 30px;
+  border: 1px white solid;
+  padding: 15px;
+  border-radius: 35px;
+  background-color: rgba(0, 255, 255, 0.05);
+  color: greenyellow;
+  display: flex;
+  max-width: 1000 px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 300px;
+}
+
+.inputArea {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    "tittle input"
+    "error error";
+}
+
+.tittle {
+  grid-area: tittle;
+}
+
+.input {
+  grid-area: input;
+}
+
+.error {
+  grid-area: error;
+  color: red;
+}
+
+.container label {
+  margin: 10px;
+}
+.container input {
+  margin: 10px;
+}
+.container span {
+  margin: 10px;
+}
