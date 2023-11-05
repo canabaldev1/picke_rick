@@ -24,7 +24,7 @@ server.use("/rickandmorty", routes);
 
 const PORT = process.env.PORT; // CONFIGURAR CORRECTAMENTE EL .env - poner encima de todo
 
-server.listen(PORT, () => {
+server.listen(PORT, () => { 
   console.log(`Server raised in port ${PORT}`);
 });
 
