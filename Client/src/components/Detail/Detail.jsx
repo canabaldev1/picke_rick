@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import getEpisodeInfo from "./getEpisodeInfo";
+import { Link } from "react-router-dom";
 
 function Detail() {
   const { id } = useParams();
@@ -15,6 +16,7 @@ function Detail() {
           `http://localhost:3001/rickandmorty/character/${id}`
         );
         const { data } = response;
+        console.log(data);
 
         if (data.name) {
           setCharacter(data);
@@ -58,6 +60,15 @@ function Detail() {
           Last known location:{" "}
           {character.locationName ? character.locationName : "Loading"}
         </h3>
+
+        <Link
+          className={styles.specs}
+          to={`/locations/${character.locationId}`}
+        >
+          <h4 className={styles.links}>
+            Do you want to see more characters from this location?
+          </h4>
+        </Link>
         {character.type && (
           <h3 className={styles.specs}>
             Type: {character.type ? character.type : "Loading"}
@@ -70,11 +81,9 @@ function Detail() {
             : "Loading"}
         </h3>
         {character.id && (
-          <h4 className={styles.specs}>
-            <a className={styles.links} target="blank" href={episodeInfo.link}>
-              let´s see what Rotten Tomatoes says about this episode
-            </a>
-          </h4>
+          <a className={styles.links} target="blank" href={episodeInfo.link}>
+            let´s see what Rotten Tomatoes says about this episode
+          </a>
         )}
       </div>
       <div className={styles.imageContainer}>

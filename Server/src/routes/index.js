@@ -1,4 +1,5 @@
 const getCharById = require("../controllers/getCharById");
+const getCharByLocation = require("../controllers/getCharByLocation");
 const login = require("../controllers/login");
 const {
   getFav,
@@ -12,6 +13,7 @@ const { Router } = require("express");
 const routes = Router();
 
 routes.get("/character/:id", getCharById);
+routes.get("/location/:id", getCharByLocation);
 routes.get("/login", login);
 routes.post("/fav", postFav);
 routes.get("/fav", getFav);

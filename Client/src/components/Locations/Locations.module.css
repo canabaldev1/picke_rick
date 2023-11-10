@@ -1,3 +1,11 @@
-.container {
-  border: 1px red solid;
+.cardsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 95%;
+}
+
+.tittle {
+  color: white;
+  border: none;
 }

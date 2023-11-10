@@ -39,7 +39,7 @@ function App() {
       name: "",
       gender: "",
       species: "",
-      origin: "",
+      originName: "",
       image: "",
       status: "",
       episode: "",
@@ -162,19 +162,12 @@ function App() {
         />
         <Route
           path="/home"
-          element={
-            <Cards
-              characters={characters}
-              onClose={onClose}
-              setCharacters={setCharacters}
-              access={access}
-            />
-          }
+          element={<Cards characters={characters} onClose={onClose} />}
         />
         <Route path="/about" element={<About />} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/favorites" element={<Favorites />}></Route>
-        <Route path="/locations" element={<Locations />}></Route>
+        <Route path="/locations/:id" element={<Locations />}></Route>
         <Route path="/*" element={<Error />} />
       </Routes>
     </div>
