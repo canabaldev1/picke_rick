@@ -29,12 +29,17 @@ export default function Card(props) {
 
   const handleFavorites = () => {
     if (isFav) {
-      divContainerRef.current.className =
-        divContainerRef.current.className + " " + styles.divContainerOnClose;
-      setTimeout(() => {
+      if (location.pathname === "/favorites") {
+        divContainerRef.current.className =
+          divContainerRef.current.className + " " + styles.divContainerOnClose;
+        setTimeout(() => {
+          setIsFav(false);
+          dispatch(removeFav(props.id));
+        }, 500);
+      } else {
         setIsFav(false);
         dispatch(removeFav(props.id));
-      }, 500);
+      }
 
       // props.handleFilter && props.handleFilter();
     } else {

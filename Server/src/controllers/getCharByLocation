@@ -1,0 +1,9 @@
+const axios = require("axios");
+
+async function getCharByLocation(req, res) {
+  try {
+    console.log("entro al try");
+  } catch (error) {
+    console.log("entro al catch");
+  }
+}

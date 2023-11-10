@@ -52,7 +52,11 @@ function Detail() {
           Gender: {character.gender ? character.gender : "Loading"}
         </h3>
         <h3 className={styles.specs}>
-          Origin: {character.origin ? character.origin : "Loading"}
+          Origin: {character.originName ? character.originName : "Loading"}
+        </h3>
+        <h3 className={styles.specs}>
+          Last known location:{" "}
+          {character.locationName ? character.locationName : "Loading"}
         </h3>
         {character.type && (
           <h3 className={styles.specs}>

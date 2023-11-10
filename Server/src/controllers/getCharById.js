@@ -11,18 +11,21 @@ async function getCharById(req, res) {
     const response = await axios.get(`${URL}${id}`);
     // console.log(response);
     const { data } = response;
-
     if (data) {
       let character = {
         id: data.id,
         name: data.name,
         gender: data.gender,
         species: data.species,
-        origin: data.origin.name,
+        originName: data.origin.name,
+        originId: Number(data.origin.url.split("/").pop()),
+        locationName: data.location.name,
+        locationId: Number(data.location.url.split("/").pop()),
         image: data.image,
         status: data.status,
         episode: data.episode[0].split("/").pop(),
       };
+      console.log(character);
       res.status(200).json(character);
     } else {
       throw new Error("Character doesn't exist");
