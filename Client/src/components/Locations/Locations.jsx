@@ -1,36 +1,75 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link, Navigate } from "react-router-dom";
 import styles from "./Locations.module.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Card from "../Card/Card";
 
-function Locations(props) {
-  const { id } = useParams();
+function Locations() {
+  const { id, page } = useParams();
 
   const [characters, setCharacters] = useState([]);
+  const [loader, setLoader] = useState(true);
+  const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
     async function fetchCharacters() {
+      setLoader(true);
       try {
         const { data } = await axios(
-          `http://localhost:3001/rickandmorty/location/${id}`
+          `http://localhost:3001/rickandmorty/location/${id}/${page}`
         );
-        setCharacters(data);
+        setCharacters(data.characters);
+        setTotalPages(data.totalPages);
+        setLoader(false);
       } catch (error) {
         console.log(error);
       }
     }
     fetchCharacters();
     return () => setCharacters([]);
-  }, [id]);
+  }, [id, page]);
+
+  const arrayButtons = Array.from(
+    { length: totalPages },
+    (_, index) => index + 1
+  );
 
   return (
     <div className={styles.container}>
       <h2 className={styles.tittle}>
-        {characters.length
-          ? "LOCATION: " + characters[0].locationName
-          : "LOCATION NOT FOUND"}
+        {loader ? (
+          "LOADING..."
+        ) : page <= totalPages ? (
+          characters.length ? (
+            "LOCATION: " + characters[0].locationName
+          ) : (
+            "LOCATION NOT FOUND"
+          )
+        ) : (
+          <Navigate to={`/locations/${id}/1`} replace />
+        )}
       </h2>
+      <div className={styles.buttonContainer}>
+        {page <= totalPages &&
+          totalPages > 1 &&
+          arrayButtons.map((pageNumber) => {
+            return (
+              <Link
+                className={styles.button}
+                key={pageNumber}
+                to={`/locations/${id}/${pageNumber}`}
+              >
+                <button
+                  className={styles.button}
+                  onClick={(e) => e.preventDefault}
+                >
+                  {pageNumber}
+                </button>
+              </Link>
+            );
+          })}
+      </div>
+
       <div className={styles.cardsContainer}>
         {characters.map((character) => {
           return (

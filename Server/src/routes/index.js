@@ -13,7 +13,7 @@ const { Router } = require("express");
 const routes = Router();
 
 routes.get("/character/:id", getCharById);
-routes.get("/location/:id", getCharByLocation);
+routes.get("/location/:id/:page", getCharByLocation);
 routes.get("/login", login);
 routes.post("/fav", postFav);
 routes.get("/fav", getFav);

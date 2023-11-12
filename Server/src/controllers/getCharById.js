@@ -9,7 +9,6 @@ async function getCharById(req, res) {
   try {
     const { id } = req.params;
     const response = await axios.get(`${URL}${id}`);
-    // console.log(response);
     const { data } = response;
     if (data) {
       let character = {
@@ -25,7 +24,6 @@ async function getCharById(req, res) {
         status: data.status,
         episode: data.episode[0].split("/").pop(),
       };
-      console.log(character);
       res.status(200).json(character);
     } else {
       throw new Error("Character doesn't exist");
@@ -89,7 +87,6 @@ async function getCharById(req, res) {
 //       res.end(JSON.stringify(response));
 //     })
 //     .catch((reason) => {
-//       console.log(reason.response.statusText);
 //       res.writeHead(500, { "Content-Type": "text/plain" });
 //       res.end(reason.message);
 //     });

@@ -167,7 +167,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/favorites" element={<Favorites />}></Route>
-        <Route path="/locations/:id" element={<Locations />}></Route>
+        <Route path="/locations/:id/:page" element={<Locations />}></Route>
         <Route path="/*" element={<Error />} />
       </Routes>
     </div>

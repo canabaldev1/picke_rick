@@ -16,7 +16,6 @@ function Detail() {
           `http://localhost:3001/rickandmorty/character/${id}`
         );
         const { data } = response;
-        console.log(data);
 
         if (data.name) {
           setCharacter(data);
@@ -56,19 +55,21 @@ function Detail() {
         <h3 className={styles.specs}>
           Origin: {character.originName ? character.originName : "Loading"}
         </h3>
+
         <h3 className={styles.specs}>
           Last known location:{" "}
           {character.locationName ? character.locationName : "Loading"}
         </h3>
-
-        <Link
-          className={styles.specs}
-          to={`/locations/${character.locationId}`}
-        >
-          <h4 className={styles.links}>
-            Do you want to see more characters from this location?
-          </h4>
-        </Link>
+        {character.locationId && (
+          <Link
+            className={styles.specs}
+            to={`/locations/${character.locationId}/1`}
+          >
+            <h4 className={styles.links}>
+              Do you want to see more characters in this location?
+            </h4>
+          </Link>
+        )}
         {character.type && (
           <h3 className={styles.specs}>
             Type: {character.type ? character.type : "Loading"}
