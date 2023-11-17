@@ -17,12 +17,11 @@ async function getCharById(req, res) {
         gender: data.gender,
         species: data.species,
         originName: data.origin.name,
-        originId: Number(data.origin.url.split("/").pop()),
         locationName: data.location.name,
         locationId: Number(data.location.url.split("/").pop()),
         image: data.image,
         status: data.status,
-        episode: data.episode[0].split("/").pop(),
+        episode: Number(data.episode[0].split("/").pop()),
       };
       res.status(200).json(character);
     } else {

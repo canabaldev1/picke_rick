@@ -20,7 +20,10 @@ export default function Cards({ characters, onClose }) {
             species={character.species}
             gender={character.gender}
             originName={character.originName}
+            locationName={character.locationName}
+            locationId={character.locationId}
             image={character.image}
+            episode={character.episode}
             onClose={onClose}
           />
         );

@@ -13,17 +13,26 @@ function Favorites(props) {
   const allCharacters = useSelector((state) => state.allCharacters);
   const dispatch = useDispatch();
   const filterGender = useRef(null);
+  const filterStatus = useRef(null);
   const filterOrder = useRef(null);
 
   const handleFilter = () => {
     dispatch(
-      filterCards(filterGender.current.value, filterOrder.current.value)
+      filterCards(
+        filterGender.current.value,
+        filterOrder.current.value,
+        filterStatus.current.value
+      )
     );
   };
 
   useEffect(() => {
     dispatch(
-      filterCards(filterGender.current.value, filterOrder.current.value)
+      filterCards(
+        filterGender.current.value,
+        filterOrder.current.value,
+        filterStatus.current.value
+      )
     );
   }, [allCharacters, dispatch]);
 
@@ -47,7 +56,7 @@ function Favorites(props) {
             onChange={handleFilter}
             ref={filterOrder}
           >
-            <option value={null}>---</option>
+            <option value="---">---</option>
             <option value="A">Ascending</option>
             <option value="D">Descending</option>
           </select>
@@ -62,10 +71,26 @@ function Favorites(props) {
             onChange={handleFilter}
             ref={filterGender}
           >
-            <option value={null}>---</option>
+            <option value="---">---</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
             <option value="Genderless">Genderless</option>
+            <option value="unknown">Unknown</option>
+          </select>
+        </div>
+        <div>
+          <label className={styles.label} htmlFor="selectStatus">
+            Filter by status
+          </label>
+          <select
+            id="selectStatus"
+            name="selectStatus"
+            onChange={handleFilter}
+            ref={filterStatus}
+          >
+            <option value="---">---</option>
+            <option value="Alive">Alive</option>
+            <option value="Dead">Dead</option>
             <option value="unknown">Unknown</option>
           </select>
         </div>

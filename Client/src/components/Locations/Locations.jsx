@@ -54,11 +54,7 @@ function Locations() {
           totalPages > 1 &&
           arrayButtons.map((pageNumber) => {
             return (
-              <Link
-                className={styles.button}
-                key={pageNumber}
-                to={`/locations/${id}/${pageNumber}`}
-              >
+              <Link key={pageNumber} to={`/locations/${id}/${pageNumber}`}>
                 <button
                   className={styles.button}
                   onClick={(e) => e.preventDefault}
@@ -81,7 +77,10 @@ function Locations() {
               species={character.species}
               gender={character.gender}
               originName={character.originName}
+              locationName={character.locationName}
+              locationId={character.locationId}
               image={character.image}
+              episode={character.episode}
             />
           );
         })}

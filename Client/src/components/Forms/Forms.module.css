@@ -45,3 +45,12 @@
 .container span {
   margin: 10px;
 }
+
+/* .buttonContainer {
+  border: red solid 1px;
+} */
+
+.button {
+  margin: 15px;
+  margin-bottom: 0px;
+}

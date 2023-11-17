@@ -1,14 +1,15 @@
+require("dotenv").config();
 // USANDO EXPRESS
 const express = require("express");
 const morgan = require("morgan");
 const routes = require("./routes/index");
-
-require("dotenv").config();
+const { conn } = require("./DB_connection");
 
 const server = express();
 
 server.use(express.json());
 server.use(morgan("dev"));
+
 server.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Credentials", "true");
@@ -24,9 +25,14 @@ server.use("/rickandmorty", routes);
 
 const PORT = process.env.PORT; // CONFIGURAR CORRECTAMENTE EL .env - poner encima de todo
 
-server.listen(PORT, () => { 
-  console.log(`Server raised in port ${PORT}`);
-});
+conn
+  .sync({ alter: true }) // alter o force
+  .then(() => {
+    server.listen(PORT, () => {
+      console.log(`Server raised in port ${PORT}`);
+    });
+  })
+  .catch((err) => console.log(err));
 
 //
 //

@@ -26,4 +26,8 @@
 .button {
   margin: 10px;
   cursor: pointer;
+  border-radius: 50%;
+  height: 40px;
+  aspect-ratio: 1;
+  background-color: yellowgreen;
 }

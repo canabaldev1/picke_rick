@@ -109,14 +109,36 @@ function App() {
   //   }
   // }
 
+  const [wrongPassword, setWrongPassword] = useState("");
+
   function login(userData) {
-    const { mail, password } = userData;
+    const { email, password } = userData;
     const URL = "http://localhost:3001/rickandmorty/login/";
-    axios(URL + `?email=${mail}&password=${password}`).then(({ data }) => {
-      const { access } = data;
-      setAccess(access);
-      access && navigate("/home");
-    });
+    axios(URL + `?email=${email}&password=${password}`)
+      .then(({ data }) => {
+        const { access } = data;
+        setAccess(access);
+        access && navigate("/home");
+      })
+      .catch((error) => {
+        const { response } = error;
+        const { data } = response;
+        setWrongPassword(data.error);
+      });
+  }
+
+  function register(userData) {
+    const URL = "http://localhost:3001/rickandmorty/login/";
+    axios
+      .post(URL, userData)
+      .then(({ data }) => {
+        setWrongPassword(data);
+      })
+      .catch((error) => {
+        const { response } = error;
+        const { data } = response;
+        setWrongPassword(data.error);
+      });
   }
 
   useEffect(() => {
@@ -156,7 +178,12 @@ function App() {
             access ? (
               <Navigate to="/home" replace />
             ) : (
-              <Form login={login} setLogedUser={setLogedUser} />
+              <Form
+                login={login}
+                setLogedUser={setLogedUser}
+                wrongPassword={wrongPassword}
+                register={register}
+              />
             )
           }
         />

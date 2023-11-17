@@ -17,13 +17,18 @@ export const CLEAR_ALL_FAVORITES = "CLEAR_ALL_FAVORITES";
 export const addFav = (character) => {
   const endpoint = "http://localhost:3001/rickandmorty/fav";
   return async (dispatch) => {
+    console.log("entra al dispatch");
     try {
+      console.log(character);
+      console.log("entra al try");
       const { data } = await axios.post(endpoint, character);
       return dispatch({
         type: "ADD_FAV",
         payload: data,
       });
-    } catch (error) {}
+    } catch (error) {
+      console.log("entra al catch");
+    }
   };
 };
 // export const addFav = (character) => {
@@ -71,10 +76,10 @@ export const removeFav = (id) => {
   };
 };
 
-export const filterCards = (gender, order) => {
+export const filterCards = (gender, order, status) => {
   return {
     type: FILTER,
-    payload: { gender, order },
+    payload: { gender, order, status },
   };
 };
 

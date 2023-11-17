@@ -2,15 +2,15 @@ import style from "./Forms.module.css";
 import { useState } from "react";
 import validate from "./validations";
 
-function Form({ login, setLogedUser }) {
+function Form({ login, setLogedUser, wrongPassword, register }) {
   const [user, setUser] = useState({
-    mail: "",
+    email: "",
     username: "",
     password: "",
   });
 
   const [error, setError] = useState({
-    mail: "",
+    email: "",
     username: "",
     password: "",
   });
@@ -31,26 +31,31 @@ function Form({ login, setLogedUser }) {
   function handleSubmit(event) {
     event.preventDefault();
     login(user);
-    const logedUser = user.mail.slice(0, user.mail.indexOf("@"));
+    const logedUser = user.email.slice(0, user.email.indexOf("@"));
     setLogedUser(logedUser);
     localStorage.setItem("user", logedUser);
+  }
+
+  function handleRegister(event) {
+    event.preventDefault();
+    register(user);
   }
 
   return (
     <form className={style.container}>
       <div className={style.inputArea}>
-        <label className={style.tittle} htmlFor="mail">
-          e-mail
+        <label className={style.tittle} htmlFor="email">
+          email
         </label>
         <input
           className={style.input}
-          id="mail"
+          id="email"
           type="text"
-          value={user.mail}
+          value={user.email}
           onChange={handleChange}
-          name="mail"
+          name="email"
         />
-        {error.mail && <span className={style.error}>{error.mail}</span>}
+        {error.email && <span className={style.error}>{error.email}</span>}
       </div>
 
       <div className={style.inputArea}>
@@ -70,9 +75,13 @@ function Form({ login, setLogedUser }) {
       </div>
 
       <div className={style.buttonContainer}>
-        <button type="submit" onClick={handleSubmit}>
-          Submit
+        <button className={style.button} type="submit" onClick={handleSubmit}>
+          Loggin
         </button>
+        <button className={style.button} type="submit" onClick={handleRegister}>
+          Register
+        </button>
+        <p>{wrongPassword}</p>
       </div>
     </form>
   );

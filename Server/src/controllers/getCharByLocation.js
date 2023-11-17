@@ -26,7 +26,6 @@ async function getCharByLocation(req, res) {
             gender: char.gender,
             species: char.species,
             originName: char.origin.name,
-            originId: Number(char.origin.url.split("/").pop()),
             locationName: char.location.name,
             locationId: Number(char.location.url.split("/").pop()),
             image: char.image,

@@ -57,13 +57,18 @@ const reducer = (state = initialState, action) => {
       };
 
     case FILTER:
-      const { gender, order } = action.payload;
+      const { gender, order, status } = action.payload;
       let filteredFavs = [...state.allCharacters];
 
       filteredFavs =
         gender === "---"
           ? filteredFavs
           : filteredFavs.filter((char) => char.gender === gender);
+
+      filteredFavs =
+        status === "---"
+          ? filteredFavs
+          : filteredFavs.filter((char) => char.status === status);
 
       filteredFavs =
         order === "---"
